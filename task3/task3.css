@@ -32,6 +32,7 @@ body{
 .middle{
 	margin-left:260px;
 	margin-right:140px;
+	overflow:hidden;
 	background:white;
 	border:1px solid #999;
 	padding:20px;
