@@ -1,80 +1,51 @@
 body{
-	background:white;
+	font-size:14px;
+	font-family:'微软雅黑';
 }
-/* *{ */
-/*     padding:20px; */
-/*     background:#eee; */
-/*     border:#999; */
-/* } */
-/* img{ */
-/*     width:80px; */
-/*     height:80px; */
-/*     border:10px; */
-/* } */
-/* span{ */
-/*     display:inline-block; */
-/* } */
-/* #name{ */
-/*     width:200px; */
-/*     border:2px solid #eee; */
-/* } */
-/* #intro{ */
-/*     [> position:relative; <] */
-/* } */
-/* #members{ */
-/*     width:120px; */
-/* } */
-/* .border{ */
-/*     vertical-align:top; */
-/*     border:1px solid #eee; */
-/*     margin:10px; */
-/* } */
-table{
+.main-wrapper{
 	padding:20px;
 	background:#eee;
 	border: 1px solid #999;
+	/* overflow控制float内容还包括在div里面 */
+	overflow:auto;
+	min-width:600px;
 }
-#name{
+.left{
 	width:200px;
 	height:100px;
-	vertical-align:top;
-}
-#name > table{
-	display:block;
-	width:200px;
+	float:left;
 	border:1px solid #999;
 	background:white;
 	padding:20px;
-	vertical-align:center;
-	margin:0;
-	padding:10px;
 }
-#name > table tbody{
-	margin:0;
-	text-align:center;
-}
-#name div{
-	width:100px;
-}
-#intro{
-	background:white;
-	border:1px solid #999;
-	padding:20px;
-
-}
-#members{
-	background:white;
-	padding:10px;
-	border:1px solid #999;
-	text-align:center;
-	display:block;
-	height:380px;
-}
-img{
+.team_logo{
+	float:left;
 	width:80px;
 	height:80px;
 	margin:5px;
 }
-td{
-	vertical-align:top;
+.team_name{
+	/* float:right; */
+	text-align:center;
+	font-weight:bold;
+}
+.middle{
+	margin-left:260px;
+	margin-right:140px;
+	background:white;
+	border:1px solid #999;
+	padding:20px;
+}
+.right{
+	float:right;
+	background:white;
+	padding:10px;
+	border:1px solid #999;
+	text-align:center;
+	width:100px
+}
+.member_logo{
+	width:80px;
+	height:80px;
+	margin:5px;
 }
