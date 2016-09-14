@@ -48,152 +48,140 @@
 				<a class="now_location" href="">文档一</a>
 			</div>
 			<div class="statement">
-				<div class="section1">
-					<form action="">
-						<div class="search_1">
-							<div>
-								<span>查询项</span>
-								<select class="select_box w71" id="" name="">
-									<option value="第1项">第1项</option>
-									<option value="第2项">第2项</option>
-								</select>
-							</div>
-						</div>
-						<div class="search_2">
-							<div>
-								<div>
-									<span>买方</span>
-									<select id="" name="" class="select_box w120">
-										<option value="小A" selected>小A</option>
-										<option value="小C">小C</option>
+				<div class="in_statement">
+					<div class="section1">
+						<form action="#">
+							<div class="search_1">
+									<span>查询项</span>
+									<select class="select_box w71 blue_arrow" id="" name="">
+										<option value="第1项">第1项</option>
+										<option value="第2项">第2项</option>
 									</select>
-								</div>
-								<div>
-									<span>卖方</span>
-									<select id="" name="" class="select_box w120">
-										<option value="小A">小A</option>
-										<option value="小C" selected>小C</option>
+							</div>
+							<div class="search_2">
+									<div>
+										<span>买方</span>
+										<select id="" name="" class="select_box w121 blue_arrow">
+											<option value="小A" selected>小A</option>
+											<option value="小C">小C</option>
+										</select>
+										<span>卖方</span>
+										<select id="" name="" class="select_box w121 blue_arrow">
+											<option value="小A">小A</option>
+											<option value="小C" selected>小C</option>
+										</select>
+									</div>
+								<a class="change">换</a>
+							</div>
+							<div class="search_3">
+									<span>日期</span>
+									<input type="date"class="select_box w121 blue_arrow" placeholder="2016-04-01">
+									<span class="ml10">总耗时</span>
+									<select id="" name="" class="select_box w71 blue_arrow">
+										<option value="1天">1天</option>
+										<option value="2天">2天</option>
+										<option value="3天">3天</option>
+										<option value="4天">4天</option>
+										<option value="5天">5天</option>
+										<option value="6天">6天</option>
+										<option value="7天">7天</option>
+										<option value="8天" selected>8天</option>
 									</select>
-								</div>
-							</div>
-							<a class="change">换</a>
-						</div>
-						<div class="search_3">
-							<div>
-								<span>日期</span>
-								<input type="date"class="select_box w120" placeholder="2016-04-01">
-							</div>
-							<div>
-								<span>总耗时</span>
-								<select id="" name="" class="select_box w71">
-									<option value="1天">1天</option>
-									<option value="2天">2天</option>
-									<option value="3天">3天</option>
-									<option value="4天">4天</option>
-									<option value="5天">5天</option>
-									<option value="6天">6天</option>
-									<option value="7天">7天</option>
-									<option value="8天" selected>8天</option>
+									<span>人数</span>
+									<select id="" name="" class="select_box w71 blue_arrow">
+										<option value="1人">1人</option>
+										<option value="2人">2人</option>
+										<option value="3人">3人</option>
+										<option value="4人">4人</option>
+										<option value="5人">5人</option>
+										<option value="6人">6人</option>
+										<option value="7人">7人</option>
+										<option value="8人" selected>8人</option>
+										<option value="9人"></option>
+										<option value="10人"></option>
+									</select>
+								<span class="ml10">成交项</span>
+								<select id="" name="" class="select_box w121 blue_arrow">
+									<option value="1项">1项</option>
+									<option value="2项">2项</option>
+									<option value="3项">3项</option>
+									<option value="4项">4项</option>
+									<option value="5项">5项</option>
+									<option value="6项">6项</option>
+									<option value="7项">7项</option>
+									<option value="8项" selected>8项</option>
+									<option value="9项">9项</option>
+									<option value="10项">10项</option>
 								</select>
-							</div>							<div>
-								<span>人数</span>
-								<select id="" name="" class="select_box w71">
-									<option value="1人">1人</option>
-									<option value="2人">2人</option>
-									<option value="3人">3人</option>
-									<option value="4人">4人</option>
-									<option value="5人">5人</option>
-									<option value="6人">6人</option>
-									<option value="7人">7人</option>
-									<option value="8人" selected>8人</option>
-									<option value="9人"></option>
-									<option value="10人"></option>
-								</select>
-							</div>	
-							<span>成交项</span>
-							<select id="" name="" class="select_box w120">
-								<option value="1项">1项</option>
-								<option value="2项">2项</option>
-								<option value="3项">3项</option>
-								<option value="4项">4项</option>
-								<option value="5项">5项</option>
-								<option value="6项">6项</option>
-								<option value="7项">7项</option>
-								<option value="8项" selected>8项</option>
-								<option value="9项">9项</option>
-								<option value="10项">10项</option>
-							</select>
+							</div>
+								<input type="submit" value="搜索">
+						</form>
+					</div>
+					<div class="section2">
+						<div class="left">left</div>
+						<div class="time cur">
+							<p>10:00 am</p>
+							<p>¥<span>1200</span></p>
 						</div>
-						<div class="search_4">
-							<input type="submit" value="搜索">
+						<div class="time">
+							<p>11:00 am</p>
+							<p>¥<span>1300</span></p>
 						</div>
-					</form>
+						<div class="time">
+							<p>12:00 am</p>
+							<p>¥<span>1200</span></p>
+						</div>
+						<div class="time">
+							<p>01:00 pm</p>
+							<p>¥<span>1400</span></p>
+						</div>
+						<div class="time">
+							<p>02:00 pm</p>
+							<p>¥<span>1500</span></p>
+						</div>
+						<div class="time">
+							<p>03:00 pm</p>
+							<p>¥<span>1800</span></p>
+						</div>
+						<div class="right">right</div>
+						<div class="history">历史查询</div>
+					</div>
+					<div class="section3">
+						<p>2016年四月份统计</p>
+						<div class="col_box">
+							<div>
+								<p class="num">133311</p>
+								<p>成交量</p>
+							</div>
+							<div class="green"></div>
+						</div>
+						<div class="col_box">
+							<div>
+								<p class="num">133311</p>
+								<p>成交量</p>
+							</div>
+							<div class="blue"></div>
+						</div>
+						<div class="col_box">
+							<div>
+								<p class="num">133311</p>
+								<p>成交量</p>
+							</div>
+							<div class="red"></div>
+						</div>
+						<div class="col_box">
+							<div>
+								<p class="num">133311</p>
+								<p>成交量</p>
+							</div>
+							<div class="yellow"></div>
+						</div>
+					</div>
+					<div class="section4"></div>
+					<div class="section5"></div>
+					<div class="section6"></div>
+					<div class="section7"></div>
 				</div>
-				<div class="section2">
-					<div class="left">left</div>
-					<div class="time cur">
-						<p>10:00 am</p>
-						<p>¥<span>1200</span></p>
-					</div>
-					<div class="time">
-						<p>11:00 am</p>
-						<p>¥<span>1300</span></p>
-					</div>
-					<div class="time">
-						<p>12:00 am</p>
-						<p>¥<span>1200</span></p>
-					</div>
-					<div class="time">
-						<p>01:00 pm</p>
-						<p>¥<span>1400</span></p>
-					</div>
-					<div class="time">
-						<p>02:00 pm</p>
-						<p>¥<span>1500</span></p>
-					</div>
-					<div class="time">
-						<p>03:00 pm</p>
-						<p>¥<span>1800</span></p>
-					</div>
-					<div class="right">right</div>
-					<div class="history">历史查询</div>
-				</div>
-				<div class="section3">
-					<p>2016年四月份统计</p>
-					<div class="col_box">
-						<div>
-							<p class="num">133311</p>
-							<p>成交量</p>
-						</div>
-						<div class="green"></div>
-					</div>
-					<div class="col_box">
-						<div>
-							<p class="num">133311</p>
-							<p>成交量</p>
-						</div>
-						<div class="blue"></div>
-					</div>
-					<div class="col_box">
-						<div>
-							<p class="num">133311</p>
-							<p>成交量</p>
-						</div>
-						<div class="red"></div>
-					</div>
-					<div class="col_box">
-						<div>
-							<p class="num">133311</p>
-							<p>成交量</p>
-						</div>
-						<div class="yellow"></div>
-					</div>
-				</div>
-				<div class="section4"></div>
-				<div class="section5"></div>
-				<div class="section6"></div>
-				<div class="section7"></div>
 			</div>
-
 	</body>
 </html>
