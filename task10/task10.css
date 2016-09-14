@@ -1,0 +1,40 @@
+*{
+	padding:20px;
+}
+.container{
+	display:flex;
+	flex-flow:row nowrap;
+	justify-content: space-between;
+	border:1px solid #000;
+	/* align-content:center; */
+	align-items:center;
+}
+#box1,#box2,#box3{
+	border:1px solid #f00;
+	width:150px;
+}
+#box1{
+	height:120px;
+}
+#box2{
+	height:100px;
+}
+#box3{
+	height:40px;
+}
+#box4{
+	height:200px;
+	width:150px;
+	border:1px solid #0f0;
+}
+@media all and (max-width:640px){
+	.container{
+		/* align-content:flex-start; */
+		align-items:flex-start;
+		flex-flow:row wrap;
+
+	}
+	#box4{
+		order:-1;
+	}
+}
