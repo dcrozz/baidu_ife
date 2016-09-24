@@ -62,8 +62,9 @@ var aqiChartWrap = document.getElementsByClassName("aqi-chart-wrap")[0];
  */
 function renderChart() {
 	text = '';
-	for (var item in aqiSourceData){
-		text += "<div title='"+aqiSourceData[pageState.nowSelectCity]+"' style={height:" + aqiSourceData[nowSelectCity][item] +";color:{"+colors[Math.random()*11]+"}"}
+	for (var item in aqiSourceData[pageState.nowSelectCity]){
+		text += "<div title='"+item+"' style='height:" + aqiSourceData[pageState.nowSelectCity][item] +"px;background:"+colors[Math.floor(Math.random()*11)]+";width:30px;'></div>"
+	}
 	aqiChartWrap.innerHTML = text;
 }
 
@@ -112,8 +113,8 @@ function initCitySelector() {
 function initAqiChartData() {
   // 将原始的源数据处理成图表需要的数据格式
   // 处理好的数据存到 chartData 中
-	if(pageState.nowGratime == 'day') {return aqiSourceData;}
-	else if (pageState.nowGratime == 'week'){
+	if(pageState.nowGraTime == 'day') {return aqiSourceData;}
+	else if (pageState.nowGraTime == 'week'){
 		new_data = {};
 		for (var item in aqiSourceData){
 			//all_count用来确保最后不到7天那周不会丢失
@@ -140,7 +141,7 @@ function initAqiChartData() {
 		}
 		return new_data;
 	}
-	else if (pageState.nowGratime == 'month'){
+	else if (pageState.nowGraTime == 'month'){
 		new_data = {};
 		for (var item in aqiSourceData){
 			month={};
@@ -164,8 +165,8 @@ function initAqiChartData() {
  * 初始化函数
  */
 function init() {
-  initGraTimeForm()
-  initCitySelector();
+  // initGraTimeForm()
+  // initCitySelector();
   chartData = initAqiChartData();
   renderChart();
 }
