@@ -42,24 +42,30 @@ var aqiSourceData = {
   "沈阳": randomBuildData(500)
 };
 
+var colors = ['#16324a', '#24385e', '#393f65', '#4e4a67', '#5a4563', '#b38e95',
+              '#edae9e', '#c1b9c2', '#bec3cb', '#9ea7bb', '#99b4ce', '#d7f0f8'];
+
 // 用于渲染图表的数据
 var chartData = {};
 
 // 记录当前页面的表单选项
 var pageState = {
-  nowSelectCity: -1,
-  nowGraTime: "day"
+	nowSelectCity: "北京",
+	nowGraTime: "day"
 }
 
+var formGraTime = document.getElementById("form-gra-time");
+var citySelect = document.getElementById("city-select");
+var aqiChartWrap = document.getElementsByClassName("aqi-chart-wrap")[0];
 /**
  * 渲染图表
  */
 function renderChart() {
-
+	text = '';
+	for (var item in aqiSourceData){
+		text += "<div title='"+aqiSourceData[pageState.nowSelectCity]+"' style={height:" + aqiSourceData[nowSelectCity][item] +";color:{"+colors[Math.random()*11]+"}"}
+	aqiChartWrap.innerHTML = text;
 }
-var formGraTime = document.getElementById("form-gra-time");
-var citySelect = document.getElementById("city-select");
-var aqiChartWrap = document.getElementByClassName("aqi-chart-wrap")[0];
 
 /**
  * 日、周、月的radio事件点击时的处理函数
@@ -106,6 +112,52 @@ function initCitySelector() {
 function initAqiChartData() {
   // 将原始的源数据处理成图表需要的数据格式
   // 处理好的数据存到 chartData 中
+	if(pageState.nowGratime == 'day') {return aqiSourceData;}
+	else if (pageState.nowGratime == 'week'){
+		new_data = {};
+		for (var item in aqiSourceData){
+			//all_count用来确保最后不到7天那周不会丢失
+			weeks = {};
+			count = 0;
+			sum = 0;
+			i = 0;
+			all_count = 0;
+			for (var day in aqiSourceData[item]){
+				count++;
+				all_count++;
+				sum += aqiSourceData[item][day];
+				if(count==7){
+					weeks[i] = sum;
+					count = 0;
+					sum = 0;
+					i++;
+				}
+				if(all_count == aqiSourceData[item].length){
+					weeks[i+1]= sum;
+				}
+			}
+			new_data[item] = weeks;
+		}
+		return new_data;
+	}
+	else if (pageState.nowGratime == 'month'){
+		new_data = {};
+		for (var item in aqiSourceData){
+			month={};
+			for ( var day in aqiSourceData[item] ){
+				now_month = day.split('-')[1];
+				if( month[now_month]!=undefined )
+				{
+					month[now_month] += aqiSourceData[item][day];
+				}
+				else{
+					month[now_month] = 0;
+				}
+			}
+			new_data[item] = month;
+		}
+		return new_data;
+	}
 }
 
 /**
@@ -114,7 +166,8 @@ function initAqiChartData() {
 function init() {
   initGraTimeForm()
   initCitySelector();
-  initAqiChartData();
+  chartData = initAqiChartData();
+  renderChart();
 }
 
 init();
