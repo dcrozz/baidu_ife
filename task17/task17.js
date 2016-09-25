@@ -54,6 +54,17 @@ var pageState = {
 	nowGraTime: "day"
 }
 
+//跨浏览器事件绑定
+function addEventHandler(ele, event, hanlder) {
+    if (ele.addEventListener) {
+        ele.addEventListener(event, hanlder, false);
+    } else if (ele.attachEvent) {
+        ele.attachEvent("on"+event, hanlder);
+    } else  {
+        ele["on" + event] = hanlder;
+    }
+}
+
 var formGraTime = document.getElementById("form-gra-time");
 var citySelect = document.getElementById("city-select");
 var aqiChartWrap = document.getElementsByClassName("aqi-chart-wrap")[0];
@@ -62,8 +73,8 @@ var aqiChartWrap = document.getElementsByClassName("aqi-chart-wrap")[0];
  */
 function renderChart() {
 	text = '';
-	for (var item in aqiSourceData[pageState.nowSelectCity]){
-		text += "<div title='"+item+"' style='height:" + aqiSourceData[pageState.nowSelectCity][item] +"px;background:"+colors[Math.floor(Math.random()*11)]+";width:30px;'></div>"
+	for (var item in chartData[pageState.nowSelectCity]){
+		text += "<div title='"+item+"' style='height:" + chartData[pageState.nowSelectCity][item] +"px;background:"+colors[Math.floor(Math.random()*11)]+";width:30px;'></div>"
 	}
 	aqiChartWrap.innerHTML = text;
 }
@@ -73,10 +84,16 @@ function renderChart() {
  */
 function graTimeChange() {
   // 确定是否选项发生了变化 
-
+	if(pageState.nowGraTime == this.value){
+		return;
+	}
+	else{
+		pageState.nowGraTime = this.value;
+	}
   // 设置对应数据
-
+	initAqiChartData();
   // 调用图表渲染函数
+	renderChart();
 }
 
 /**
@@ -84,17 +101,25 @@ function graTimeChange() {
  */
 function citySelectChange() {
   // 确定是否选项发生了变化 
-
+	if(pageState.nowSelectCity == this.value){
+		return;
+	}else{
+		pageState.nowSelectCity = this.value;
+	}
   // 设置对应数据
-
+	initAqiChartData();
   // 调用图表渲染函数
+	renderChart();
 }
 
 /**
  * 初始化日、周、月的radio事件，当点击时，调用函数graTimeChange
  */
 function initGraTimeForm() {
-
+	var pageRadio = document.getElementsByTagName("input");
+	for( var i = 0; i< pageRadio.length; i++ ){
+		addEventHandler(pageRadio[i],'click',graTimeChange);
+	}
 }
 
 /**
@@ -102,8 +127,13 @@ function initGraTimeForm() {
  */
 function initCitySelector() {
   // 读取aqiSourceData中的城市，然后设置id为city-select的下拉列表中的选项
-
+	var cityList = '';
+	for (var item in aqiSourceData){
+		cityList += "<option>" + item + "</option>";
+	}
+	citySelect.innerHTML = cityList;
   // 给select设置事件，当选项发生变化时调用函数citySelectChange
+	addEventHandler(citySelect,'change',citySelectChange);
 
 }
 
@@ -113,11 +143,12 @@ function initCitySelector() {
 function initAqiChartData() {
   // 将原始的源数据处理成图表需要的数据格式
   // 处理好的数据存到 chartData 中
-	if(pageState.nowGraTime == 'day') {return aqiSourceData;}
+	if(pageState.nowGraTime == 'day') { chartData = aqiSourceData;}
 	else if (pageState.nowGraTime == 'week'){
 		new_data = {};
 		for (var item in aqiSourceData){
 			//all_count用来确保最后不到7天那周不会丢失
+			//要算周平均 否则会height值会过大
 			weeks = {};
 			count = 0;
 			sum = 0;
@@ -128,36 +159,42 @@ function initAqiChartData() {
 				all_count++;
 				sum += aqiSourceData[item][day];
 				if(count==7){
-					weeks[i] = sum;
+					weeks[i] = Math.floor(sum/count);
 					count = 0;
 					sum = 0;
 					i++;
 				}
 				if(all_count == aqiSourceData[item].length){
-					weeks[i+1]= sum;
+					weeks[i+1]= Math.floor(sum/count);
 				}
 			}
 			new_data[item] = weeks;
 		}
-		return new_data;
+		chartData =  new_data;
 	}
 	else if (pageState.nowGraTime == 'month'){
 		new_data = {};
 		for (var item in aqiSourceData){
 			month={};
+			count={};
 			for ( var day in aqiSourceData[item] ){
 				now_month = day.split('-')[1];
 				if( month[now_month]!=undefined )
 				{
 					month[now_month] += aqiSourceData[item][day];
+					count[now_month] ++;
 				}
 				else{
 					month[now_month] = 0;
+					count[now_month] = 0;
 				}
+			}
+			for (var itm in month){
+				month[itm] = Math.floor(month[itm]/count[itm]);
 			}
 			new_data[item] = month;
 		}
-		return new_data;
+		chartData =  new_data;
 	}
 }
 
@@ -165,9 +202,9 @@ function initAqiChartData() {
  * 初始化函数
  */
 function init() {
-  // initGraTimeForm()
-  // initCitySelector();
-  chartData = initAqiChartData();
+  initGraTimeForm()
+  initCitySelector();
+  initAqiChartData();
   renderChart();
 }
 
