@@ -9,12 +9,12 @@ function addEventHandler(element,event,listener){
 		element["on" + event] = listener;
 	}
 };
+array = [];
 function textToArray(){
 	var text = document.getElementById("text").value;
-	var array = text.split(' ');
-	return array
+	array = text.split(' ');
 }
-function render(array){
+function render(){
 	var container = document.getElementById("container");
 	var str = '';
 	array.forEach(function(x,index,array){
@@ -23,12 +23,12 @@ function render(array){
 	container.innerHTML = str;
 }
 function initArray(){
-	var array = textToArray();
-	render(array);
+	textToArray();
+	render();
 }
-// function initSearch(){
-//     var searchText = document.getElementById("search_text").value;
-// }
+function initSearch(){
+	var searchText = document.getElementById("search_text").value;
+}
 var insert = document.getElementById("insert");
 var search = document.getElementById("search");
 addEventHandler(insert,'click',initArray);
