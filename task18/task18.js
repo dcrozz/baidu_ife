@@ -10,26 +10,27 @@ function addEventHandler(element,event,listener){
 	}
 };
 array = new Array();
-function queueOperate(){
-	num = document.getElementById("num").value;
-	leftin:function(num){
-		array.shift(num);
+var queue = {
+	leftin:function(){
+		var num = document.getElementById("num").value;
+		array.unshift(num);
 		render();
-	}
-	rightin:function(num){
+	},
+	rightin:function(){
+		var num = document.getElementById("num").value;
 		array.push(num);
 		render();
-	}
+	},
 	leftout: function(){
 		if(array.length<=0){
 			alert('please input a number');
 		}else{
-			array.unshift(0);
+			array.shift();
 		}
 		render();
-	}
+	},
 	rightout:function(){
-		if(arrya.length<=0){
+		if(array.length<=0){
 			alert('please input a number');
 		}else{
 			array.pop();
@@ -41,9 +42,16 @@ function queueOperate(){
 function render(){
 	var container = document.getElementById("container");
 	var str = '';
-	array.forEach(function(x,index,a){
-		str += "<div style='height:20px;width:60px;background:#fc625d;'>" + x +"</div>";
-
-
+	array.forEach(function(x,index,array){
+		str += "<div class='array'>" + x +"</div>";
 	});
+	container.innerHTML = str;
 }
+var left_in = document.getElementById("left_in");
+var right_in = document.getElementById("right_in");
+var left_out = document.getElementById("left_out");
+var right_out = document.getElementById("right_out");
+addEventHandler(left_in,'click',queue.leftin);
+addEventHandler(right_in,'click',queue.rightin);
+addEventHandler(left_out,'click',queue.leftout);
+addEventHandler(right_out,'click',queue.rightout);
