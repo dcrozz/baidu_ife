@@ -11,7 +11,7 @@ function addEventHandler(element,event,listener){
 };
 array = [];
 function textToArray(){
-	var text = document.getElementById("text").value;
+	var text = document.getElementById("text").value.trim();
 	array = text.split(' ');
 }
 function render(){
@@ -22,14 +22,18 @@ function render(){
 	});
 	container.innerHTML = str;
 }
+
 function initArray(){
 	textToArray();
 	render();
 }
 function initSearch(){
-	var searchText = document.getElementById("search_text").value;
+	var before = document.getElementById("container").innerHTML;
+	var str = document.getElementById("search_text").value;
+	document.getElementById("container").innerHTML = before.replace(new RegExp(str,"g"),"<span class='highlight'>" + str + "</span>");
 }
 var insert = document.getElementById("insert");
 var search = document.getElementById("search");
 addEventHandler(insert,'click',initArray);
+addEventHandler(search,'click',initSearch);
 
