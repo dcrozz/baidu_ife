@@ -15,15 +15,14 @@ function textToArray(){
 	array = text.split(' ');
 }
 function render(){
-	var container = document.getElementById("container2");
+	var container = document.getElementById("container1");
 	var str = '';
 	array.forEach(function(x,index,array){
 		str += "<div class='array'>" + x +"</div>";
 	})
 	container.innerHTML = str;
 }
-
-function initArray(){
+function addTag(){
 	textToArray();
 	render();
 }
